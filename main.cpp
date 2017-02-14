@@ -1,6 +1,6 @@
 #include <iostream>
 #include "lib/Lista.hpp"
-#include "lib/ListaLigada.hpp"
+//#include "lib/ListaLigada.hpp"
 #include "lib/ListaCircular.hpp"
 #include "lib/Pila.hpp"
 #include "lib/Cola.hpp"
@@ -26,9 +26,14 @@ public:
 };
 
 void pruebasListaEstatica();
+void pruebasPilaEstatica();
+void pruebasColaEstatica();
+
 
 int main() {
-    pruebasListaEstatica();
+    //pruebasListaEstatica();
+    //pruebasPilaEstatica();
+    pruebasColaEstatica();
     return 0;
 }
 
@@ -74,5 +79,63 @@ void pruebasListaEstatica(){
     delete(lista);
     delete(lista1);
     delete[](lista_de_listas);
+    std::cout<<"Cuenta: "<<cuenta<<std::endl;
+}
+void pruebasPilaEstatica(){
+    Pila<Integer>* pila = new Pila<Integer>(25,"Primera");
+    std::cout<<pila->get_nombre()<<std::endl;
+    std::cout<<pila->tamanio()<<std::endl;
+    std::cout<<pila->size()<<std::endl;
+    std::cout<<pila->vacia()<<std::endl;
+    std::cout<<pila->llena()<<std::endl;
+    Integer* a = new Integer(6);
+    Integer* b = new Integer(5);
+    Integer* c = new Integer(4);
+    Integer* d = new Integer(3);
+    pila->apila(a);
+    pila->apila(b);
+    pila->apila(c);
+    std::cout<<*pila->g_tope()<<std::endl;
+    std::cout<<*pila->desapila()<<std::endl;
+    std::cout<<*pila->desapila()<<std::endl;
+    std::cout<<*pila->desapila()<<std::endl;
+    std::cout<<pila->size()<<std::endl;
+    delete(a);
+    delete(b);
+    delete(c);
+    pila->apila(d);
+    std::cout<<*pila->desapila()<<std::endl;
+    delete(d);
+    delete(pila);
+    std::cout<<"Cuenta: "<<cuenta<<std::endl;
+}
+void pruebasColaEstatica(){
+    Cola<Integer>* cola = new Cola<Integer>(10,"Cola");
+    std::cout<<cola->get_nombre()<<std::endl;
+    std::cout<<cola->tamanio()<<std::endl;
+    std::cout<<cola->size()<<std::endl;
+    std::cout<<cola->vacia()<<std::endl;
+    std::cout<<cola->llena()<<std::endl;
+    Integer* a = new Integer(6);
+    Integer* b = new Integer(5);
+    Integer* c = new Integer(4);
+    Integer* d = new Integer(3);
+    cola->encola(a);
+    cola->encola(b);
+    cola->encola(c);
+    std::cout<<"--------------------------------"<<std::endl;
+    std::cout<<cola->frente()->value()<<std::endl;
+    std::cout<<cola->size()<<std::endl;
+    delete cola->desencola();
+    std::cout<<cola->frente()->value()<<std::endl;
+    std::cout<<cola->size()<<std::endl;
+    delete cola->desencola();
+    std::cout<<cola->frente()->value()<<std::endl;
+    std::cout<<cola->size()<<std::endl;
+    delete cola->desencola();
+    std::cout<<cola->size()<<std::endl;
+    std::cout<<"Cuenta: "<<cuenta<<std::endl;
+    delete(d);
+    delete(cola);
     std::cout<<"Cuenta: "<<cuenta<<std::endl;
 }
