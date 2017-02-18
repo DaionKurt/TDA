@@ -5,13 +5,7 @@
 #define TDA_LISTALIGADA_HPP
 
 #include <sstream>
-
-template <typename T>
-class Nodo{
-public:
-    T* elemento;
-    Nodo* siguiente;
-};
+#include "Estructura.hpp"
 
 template <typename T>
 class Lista{

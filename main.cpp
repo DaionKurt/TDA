@@ -3,7 +3,8 @@
 //#include "lib/ListaLigada.hpp"
 #include "lib/ListaDoblementeLigada.hpp"
 #include "lib/ListaCircular.hpp"
-#include "lib/Pila.hpp"
+//#include "lib/Pila.hpp"
+#include "lib/PilaDinamica.hpp"
 #include "lib/Cola.hpp"
 #include "lib/ColaCircular.hpp"
 #include "lib/Arbol.hpp"
@@ -31,14 +32,15 @@ void pruebasPilaEstatica();
 void pruebasColaEstatica();
 void pruebasListaDinamica();
 void pruebasListaDoblementeLigada();
-
+void pruebasPilaDinamica();
 
 int main() {
     //pruebasListaEstatica();
     //pruebasPilaEstatica();
     //pruebasColaEstatica();
     //pruebasListaDinamica();
-    pruebasListaDoblementeLigada();
+    //pruebasListaDoblementeLigada();
+    pruebasPilaDinamica();
     return 0;
 }
 /*
@@ -122,7 +124,6 @@ void pruebasListaDinamica(){
     std::cout<<"Cuenta: "<<cuenta<<std::endl;
 }
 
- */
 void pruebasPilaEstatica(){
     Pila<Integer>* pila = new Pila<Integer>(25,"Primera");
     std::cout<<pila->get_nombre()<<std::endl;
@@ -151,7 +152,8 @@ void pruebasPilaEstatica(){
     delete(pila);
     std::cout<<"Cuenta: "<<cuenta<<std::endl;
 }
-void pruebasColaEstatica(){
+ */
+ void pruebasColaEstatica(){
     Cola<Integer>* cola = new Cola<Integer>(10,"Cola");
     std::cout<<cola->get_nombre()<<std::endl;
     std::cout<<cola->tamanio()<<std::endl;
@@ -214,5 +216,41 @@ void pruebasListaDoblementeLigada(){
     delete(b);
     delete(c);
     delete(d);
+    std::cout<<"Cuenta: "<<cuenta<<std::endl;
+}
+void pruebasPilaDinamica(){
+    Pila<Integer>* pila = new Pila<Integer>("Primera");
+    std::cout<<pila->get_nombre()<<std::endl;
+    std::cout<<pila->get_cantidad()<<std::endl;
+    std::cout<<pila->vacia()<<std::endl;
+    Integer* a = new Integer(6);
+    Integer* b = new Integer(5);
+    Integer* c = new Integer(4);
+    Integer* d = new Integer(3);
+    pila->apila(a);
+    pila->apila(b);
+    std::cout<<pila->vacia()<<std::endl;
+    std::cout<<pila->get_cantidad()<<std::endl;
+    pila->apila(c);
+    pila->apila(d);
+    std::cout<<pila->get_cantidad()<<std::endl;
+
+    std::cout<<"TOPE: "<<*pila->g_tope()<<std::endl;
+    pila->desapila();
+    std::cout<<"TOPE: "<<*pila->g_tope()<<std::endl;
+    pila->desapila();
+    std::cout<<"TOPE: "<<*pila->g_tope()<<std::endl;
+    pila->desapila();
+    std::cout<<"TOPE: "<<*pila->g_tope()<<std::endl;
+    delete(a);
+    delete(b);
+    delete(c);
+    pila->apila(d);
+    std::cout<<"TOPE: "<<*pila->g_tope()<<std::endl;
+    pila->desapila();
+    pila->desapila();
+    std::cout<<pila->get_cantidad()<<std::endl;
+    delete(d);
+    delete(pila);
     std::cout<<"Cuenta: "<<cuenta<<std::endl;
 }

@@ -5,35 +5,28 @@
 #define TDA_LISTADOBLEMENTELIGADA_HPP
 
 #include <sstream>
-
-template <typename T>
-class Nodo{
-public:
-    T* elemento;
-    Nodo* siguiente;
-    Nodo* anterior;
-};
+#include "Estructura.hpp"
 
 template <typename T>
 class ListaLigada{
-    Nodo<T>* encabezado;
+    NodoD<T>* encabezado;
     int contador;
     std::string nombre;
-    Nodo<T>* reserva();
-    void libera(Nodo<T>*);
+    NodoD<T>* reserva();
+    void libera(NodoD<T>*);
 public:
     ListaLigada();
     ListaLigada(std::string);
     void inserta(T*);
-    void inserta(T*,Nodo<T>*);
-    void suprime(Nodo<T>*);
-    Nodo<T>* localiza(T*);
-    T* recupera(Nodo<T>*);
-    Nodo<T>* siguiente(Nodo<T>*);
-    Nodo<T>* anterior(Nodo<T>*);
-    Nodo<T>* primero();
-    Nodo<T>* ultimo();
-    Nodo<T>* fin();
+    void inserta(T*,NodoD<T>*);
+    void suprime(NodoD<T>*);
+    NodoD<T>* localiza(T*);
+    T* recupera(NodoD<T>*);
+    NodoD<T>* siguiente(NodoD<T>*);
+    NodoD<T>* anterior(NodoD<T>*);
+    NodoD<T>* primero();
+    NodoD<T>* ultimo();
+    NodoD<T>* fin();
     bool vacia();
     int get_tamanio();
     std::string get_nombre();
@@ -41,15 +34,15 @@ public:
 };
 
 template <typename T>
-Nodo<T>* ListaLigada<T>::reserva(){
+NodoD<T>* ListaLigada<T>::reserva(){
     contador++;
-    return new Nodo<T>;
+    return new NodoD<T>;
 }
 
 template <typename T>
-void ListaLigada<T>::libera(Nodo<T>* nodo){
+void ListaLigada<T>::libera(NodoD<T>* NodoD){
     contador--;
-    delete nodo;
+    delete NodoD;
 }
 
 template <typename T>
@@ -67,8 +60,8 @@ template <typename T>
 void ListaLigada<T>::inserta(T* elemento){inserta(elemento,fin());}
 
 template <typename T>
-void ListaLigada<T>::inserta(T* elemento,Nodo<T>* posicion){
-    Nodo<T>* nuevo = reserva();
+void ListaLigada<T>::inserta(T* elemento,NodoD<T>* posicion){
+    NodoD<T>* nuevo = reserva();
     nuevo->elemento = elemento;
     nuevo->siguiente = posicion->siguiente;
     nuevo->anterior = posicion;
@@ -78,7 +71,7 @@ void ListaLigada<T>::inserta(T* elemento,Nodo<T>* posicion){
 }
 
 template <typename T>
-void ListaLigada<T>::suprime(Nodo<T>* posicion){
+void ListaLigada<T>::suprime(NodoD<T>* posicion){
     if(posicion->siguiente!= nullptr)
         posicion->siguiente->anterior = posicion->anterior;
     posicion->anterior->siguiente = posicion->siguiente;
@@ -86,33 +79,33 @@ void ListaLigada<T>::suprime(Nodo<T>* posicion){
 }
 
 template <typename T>
-Nodo<T>* ListaLigada<T>::localiza(T* elemento){
-    for(Nodo<T>* posicion=encabezado;posicion!= nullptr;posicion=posicion->siguiente)
+NodoD<T>* ListaLigada<T>::localiza(T* elemento){
+    for(NodoD<T>* posicion=encabezado;posicion!= nullptr;posicion=posicion->siguiente)
         if(recupera(posicion)==elemento)
             return posicion;
     return nullptr;
 }
 
 template <typename T>
-T* ListaLigada<T>::recupera(Nodo<T>* posicion){
+T* ListaLigada<T>::recupera(NodoD<T>* posicion){
     return posicion->elemento;
 }
 
 template <typename T>
-Nodo<T>* ListaLigada<T>::siguiente(Nodo<T>* posicion){ return posicion->siguiente;}
+NodoD<T>* ListaLigada<T>::siguiente(NodoD<T>* posicion){ return posicion->siguiente;}
 
 template <typename T>
-Nodo<T>* ListaLigada<T>::anterior(Nodo<T>* posicion){ return posicion->anterior;}
+NodoD<T>* ListaLigada<T>::anterior(NodoD<T>* posicion){ return posicion->anterior;}
 
 template <typename T>
-Nodo<T>* ListaLigada<T>::primero(){ return encabezado->siguiente;}
+NodoD<T>* ListaLigada<T>::primero(){ return encabezado->siguiente;}
 
 template <typename T>
-Nodo<T>* ListaLigada<T>::ultimo(){ return anterior(fin());}
+NodoD<T>* ListaLigada<T>::ultimo(){ return anterior(fin());}
 
 template <typename T>
-Nodo<T>* ListaLigada<T>::fin(){
-    Nodo<T>* posicion = encabezado;
+NodoD<T>* ListaLigada<T>::fin(){
+    NodoD<T>* posicion = encabezado;
     while(posicion->siguiente!= nullptr)
         posicion=posicion->siguiente;
     return posicion;
@@ -130,7 +123,7 @@ std::string ListaLigada<T>::get_nombre(){return nombre;}
 template <typename T>
 std::string ListaLigada<T>::get_impresion(){
     std::stringstream str;
-    for(Nodo<T>* posicion=encabezado->siguiente;posicion!= nullptr;posicion=posicion->siguiente)
+    for(NodoD<T>* posicion=encabezado->siguiente;posicion!= nullptr;posicion=posicion->siguiente)
         str << *recupera(posicion) <<std::endl;
     return str.str();
 }
