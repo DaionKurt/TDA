@@ -1,6 +1,7 @@
 #include <iostream>
 //#include "lib/Lista.hpp"
-#include "lib/ListaLigada.hpp"
+//#include "lib/ListaLigada.hpp"
+#include "lib/ListaDoblementeLigada.hpp"
 #include "lib/ListaCircular.hpp"
 #include "lib/Pila.hpp"
 #include "lib/Cola.hpp"
@@ -29,13 +30,15 @@ void pruebasListaEstatica();
 void pruebasPilaEstatica();
 void pruebasColaEstatica();
 void pruebasListaDinamica();
+void pruebasListaDoblementeLigada();
 
 
 int main() {
     //pruebasListaEstatica();
     //pruebasPilaEstatica();
     //pruebasColaEstatica();
-    pruebasListaDinamica();
+    //pruebasListaDinamica();
+    pruebasListaDoblementeLigada();
     return 0;
 }
 /*
@@ -82,7 +85,44 @@ void pruebasListaEstatica(){
     delete(lista1);
     delete[](lista_de_listas);
     std::cout<<"Cuenta: "<<cuenta<<std::endl;
-}*/
+}
+void pruebasListaDinamica(){
+    Lista<Integer> *lista = new Lista<Integer>("Prueba");
+    Integer* a = new Integer(6);
+    Integer* b = new Integer(5);
+    Integer* c = new Integer(4);
+    Integer* d = new Integer(3);
+    std::cout<<lista->get_nombre()<<std::endl;
+    std::cout<<lista->vacia()<<std::endl;
+    std::cout<<lista->get_tamanio()<<std::endl;
+    lista->inserta(a);
+    lista->inserta(b);
+    std::cout<<lista->get_impresion();
+    lista->inserta(c);
+    lista->inserta(d);
+    std::cout<<"--------------"<<std::endl;
+    std::cout<<lista->get_impresion();
+    lista->suprime(lista->ultimo());
+    std::cout<<"--------------"<<std::endl;
+    std::cout<<lista->get_impresion();
+    std::cout<<lista->vacia()<<std::endl;
+    std::cout<<lista->get_tamanio()<<std::endl;
+    std::cout<<"Ultimo: "<<*lista->siguiente(lista->ultimo())->elemento<<std::endl;
+    std::cout<<"Primero: "<<*lista->siguiente(lista->primero())->elemento<<std::endl;
+    std::cout<<"Anterior: "<<*lista->anterior(lista->ultimo())->elemento<<std::endl;
+    std::cout<<"Recupera Primero: "<<*lista->recupera(lista->primero())<<std::endl;
+    std::cout<<"Recupera Ultimo: "<<*lista->recupera(lista->ultimo())<<std::endl;
+    std::cout<<"--------------"<<std::endl;
+    std::cout<<lista->get_impresion();
+    delete(lista);
+    delete(a);
+    delete(b);
+    delete(c);
+    delete(d);
+    std::cout<<"Cuenta: "<<cuenta<<std::endl;
+}
+
+ */
 void pruebasPilaEstatica(){
     Pila<Integer>* pila = new Pila<Integer>(25,"Primera");
     std::cout<<pila->get_nombre()<<std::endl;
@@ -141,8 +181,8 @@ void pruebasColaEstatica(){
     delete(cola);
     std::cout<<"Cuenta: "<<cuenta<<std::endl;
 }
-void pruebasListaDinamica(){
-    Lista<Integer> *lista = new Lista<Integer>("Prueba");
+void pruebasListaDoblementeLigada(){
+    ListaLigada<Integer> *lista = new ListaLigada<Integer>("Prueba");
     Integer* a = new Integer(6);
     Integer* b = new Integer(5);
     Integer* c = new Integer(4);
@@ -152,11 +192,14 @@ void pruebasListaDinamica(){
     std::cout<<lista->get_tamanio()<<std::endl;
     lista->inserta(a);
     lista->inserta(b);
-    std::cout<<lista->get();
+    std::cout<<lista->get_impresion();
     lista->inserta(c);
     lista->inserta(d);
+    std::cout<<"--------------"<<std::endl;
+    std::cout<<lista->get_impresion();
     lista->suprime(lista->ultimo());
-    std::cout<<lista->get();
+    std::cout<<"--------------"<<std::endl;
+    std::cout<<lista->get_impresion();
     std::cout<<lista->vacia()<<std::endl;
     std::cout<<lista->get_tamanio()<<std::endl;
     std::cout<<"Ultimo: "<<*lista->siguiente(lista->ultimo())->elemento<<std::endl;
@@ -164,6 +207,8 @@ void pruebasListaDinamica(){
     std::cout<<"Anterior: "<<*lista->anterior(lista->ultimo())->elemento<<std::endl;
     std::cout<<"Recupera Primero: "<<*lista->recupera(lista->primero())<<std::endl;
     std::cout<<"Recupera Ultimo: "<<*lista->recupera(lista->ultimo())<<std::endl;
+    std::cout<<"--------------"<<std::endl;
+    std::cout<<lista->get_impresion();
     delete(lista);
     delete(a);
     delete(b);
