@@ -29,7 +29,6 @@ public:
     int fin()const;
     bool vacia();
     bool llena();
-    bool mismo(T* x,T* y);
     Lista<T>* concatena(Lista* lista);
     Lista<T> concatena(Lista& l);
     void purga();
@@ -123,11 +122,6 @@ int Lista<T>::get_tamanio(){return tamanio;}
 
 template <typename T>
 std::string Lista<T>::get_nombre(){return nombre;}
-
-template <typename T>
-bool Lista<T>::mismo(T* x,T* y){
-    return x->equals(y);
-}
 
 template <typename T>
 Lista<T>* Lista<T>::concatena(Lista* l) {
